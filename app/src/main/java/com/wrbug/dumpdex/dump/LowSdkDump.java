@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.wrbug.dumpdex.util.DeviceUtils;
 import com.wrbug.dumpdex.util.FileUtils;
-import com.wrbug.dumpdex.Native;
 import com.wrbug.dumpdex.PackerInfo;
 
 import java.io.File;
@@ -29,9 +28,7 @@ public class LowSdkDump {
 
     public static void init(final XC_LoadPackage.LoadPackageParam lpparam, PackerInfo.Type type) {
         log("start hook Instrumentation#newApplication");
-        if (DeviceUtils.supportNativeHook()) {
-            Native.dump(lpparam.packageName);
-        }
+
         if (type == PackerInfo.Type.BAI_DU) {
             return;
         }

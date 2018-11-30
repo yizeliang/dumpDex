@@ -47,7 +47,7 @@ public class PackerInfo {
     /**
      * 腾讯加固
      */
-    private static final String[] TENCENT = {"com.tencent.StubShell.TxAppEntry"};
+    private static final String[] TENCENT = {"com.tencent.StubShell.TxAppEntry","com.googlebiquge.ebook.app"};
     /**
      * 百度加固
      */
