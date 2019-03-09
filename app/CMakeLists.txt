@@ -17,7 +17,13 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-             src/main/cpp/native.cpp src/main/cpp/dlopen.c src/main/cpp/inlineHook.c src/main/cpp/relocate.c src/main/cpp/And64InlineHook.cpp )
+             src/main/cpp/native.cpp
+             src/main/cpp/dlopen.c
+             src/main/cpp/inlineHook.c
+             src/main/cpp/relocate.c
+             src/main/cpp/And64InlineHook.cpp
+             src/main/cpp/util/deviceutils.cpp
+              src/main/cpp/util/fileutils.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -42,3 +48,12 @@ target_link_libraries( # Specifies the target library.
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )
+
+
+if(${ANDROID_ABI} STREQUAL "armeabi-v7a")
+    include_directories(${ANDROID_SYSROOT}/usr/include/arm-linux-androidabi)
+elseif(${ANDROID_ABI} STREQUAL "arm64-v8a")
+    include_directories(${ANDROID_SYSROOT}/usr/include/aarch64-linux-android)
+else()
+    include_directories(${ANDROID_SYSROOT}/usr/include/arm-linux-androidabi)
+endif()
